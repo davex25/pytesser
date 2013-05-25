@@ -1,0 +1,9 @@
+setup.cfg
+setup.py
+PyTesser.egg-info/PKG-INFO
+PyTesser.egg-info/SOURCES.txt
+PyTesser.egg-info/dependency_links.txt
+PyTesser.egg-info/entry_points.txt
+PyTesser.egg-info/not-zip-safe
+PyTesser.egg-info/top_level.txt
+pytesser/__init__.py
