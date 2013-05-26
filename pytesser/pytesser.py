@@ -12,7 +12,7 @@ import util
 import errors
 
 
-tesseract_exe_name = 'dlltest' # Name of executable to be called at command line
+tesseract_exe_name = 'tesseract' # Name of executable to be called at command line
 scratch_image_name = "temp.bmp" # This file must be .bmp or other Tesseract-compatible format
 scratch_text_name_root = "temp" # Leave out the .txt extension
 _cleanup_scratch_flag = True  # Temporary files cleaned up after OCR operation
@@ -59,7 +59,7 @@ def image_file_to_string(filename, cleanup = _cleanup_scratch_flag, graceful_err
 		try:
 			call_tesseract(filename, scratch_text_name_root)
 			result = util.retrieve_result(scratch_text_name_root)
-		except errors.Tesser_General_Exception:
+		except(errors.Tesser_General_Exception):
 			if graceful_errors:
 				im = Image.open(filename)
 				result = image_to_string(im, cleanup)
@@ -74,15 +74,15 @@ def image_file_to_string(filename, cleanup = _cleanup_scratch_flag, graceful_err
 if __name__=='__main__':
 	im = Image.open('phototest.tif')
 	text = image_to_string(im, cleanup=False)
-	print text
+	print(text)
 	try:
 		text = image_file_to_string('fnord.tif', graceful_errors=False)
-	except errors.Tesser_General_Exception, value:
-		print "fnord.tif is incompatible filetype.  Try graceful_errors=True"
-		print value
+	except(errors.Tesser_General_Exception, value):
+		print("fnord.tif is incompatible filetype.  Try graceful_errors=True")
+		print(value)
 	text = image_file_to_string('fnord.tif', graceful_errors=True, cleanup=False)
-	print "fnord.tif contents:", text
+	print("fnord.tif contents:", text)
 	text = image_file_to_string('fonts_test.png', graceful_errors=True)
-	print text
+	print(text)
 
 
